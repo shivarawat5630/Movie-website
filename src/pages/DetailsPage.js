@@ -37,6 +37,7 @@ const DetailsPage = () => {
               <div className='w-full h-full'>
                 <img
                     src={imageURL+data?.backdrop_path}
+                    alt={data?.title ? `${data.title} backdrop` : 'Backdrop image'}
                     className='h-full w-full object-cover'
                 /> 
               </div> 
@@ -47,6 +48,7 @@ const DetailsPage = () => {
               <div className='relative mx-auto lg:-mt-28 lg:mx-0 w-fit min-w-60'>
                   <img
                       src={imageURL+data?.poster_path}
+                      alt={data?.title ? `${data.title} poster` : 'Poster image'}
                       className='h-80 w-60 object-cover rounded'
                   /> 
                   <button onClick={()=>handlePlayVideo(data)} className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>Play Now</button>
@@ -111,10 +113,11 @@ const DetailsPage = () => {
                     {
                       castData?.cast?.filter(el => el?.profile_path).map((starCast,index)=>{
                         return(
-                          <div>
+                          <div key={index}>
                             <div>
                               <img
                                 src={imageURL+starCast?.profile_path} 
+                                alt={`${starCast?.name}`}
                                 className='w-24 h-24 object-cover rounded-full'
                               />
                             </div>
